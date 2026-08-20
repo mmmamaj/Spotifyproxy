@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>SPOTIFY DOWNLOADS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;font-family:Inter,Arial,sans-serif;background:#000;color:#fff;overflow-x:hidden}
+body{min-height:100svh;position:relative}
+#code-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#000}
+.column{position:absolute;top:-120%;display:flex;flex-direction:column;gap:28px;white-space:nowrap;animation:fall linear infinite}
+.code{font:700 12px/1.2 monospace;color:#19ff66;opacity:.12;text-shadow:0 0 8px #19ff66}
+.code.black{color:#000;opacity:.3}
+@keyframes fall{to{transform:translateY(230%)}}
+body:after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 40%,rgba(0,255,80,.06),transparent 45%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5))}
+main{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:38px 20px 35px}
+.corner-logo{position:fixed;right:24px;top:22px;width:46px;height:46px;filter:drop-shadow(0 0 10px rgba(30,255,100,.65));animation:spin 5s linear infinite}
+.corner-logo svg,.icon svg{width:100%;height:100%;display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{text-align:center;margin-top:26px;margin-bottom:42px}
+.brand h1{font-size:clamp(28px,8vw,48px);font-weight:900;letter-spacing:5px;line-height:.95;text-shadow:0 0 18px rgba(20,255,90,.3)}
+.brand h1 span{display:block;color:#18ff63}
+.brand p{margin-top:14px;color:#7cff9e;font:600 10px monospace;letter-spacing:4px;opacity:.75}
+.buttons{width:min(430px,100%);display:flex;flex-direction:column;gap:15px}
+.download-btn{position:relative;width:100%;min-height:72px;border:1px solid rgba(24,255,99,.65);border-radius:16px;background:linear-gradient(100deg,rgba(7,25,13,.94),rgba(0,0,0,.92));box-shadow:0 0 18px rgba(19,255,95,.09),inset 0 0 20px rgba(19,255,95,.025);color:#fff;text-decoration:none;display:flex;align-items:center;padding:12px 20px;overflow:hidden;transform:translateY(18px);opacity:0;animation:appear .7s ease forwards}
+.download-btn:nth-child(2){animation-delay:.12s}.download-btn:nth-child(3){animation-delay:.24s}
+.download-btn:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(20,255,90,.08),transparent);transform:translateX(-100%);transition:.5s}
+.download-btn:hover:before{transform:translateX(100%)}
+.download-btn:hover{transform:translateY(-3px);border-color:#20ff68;box-shadow:0 0 28px rgba(20,255,90,.2),inset 0 0 24px rgba(20,255,90,.05)}
+.download-btn:active{transform:scale(.98)}
+@keyframes appear{to{opacity:1;transform:translateY(0)}}
+.icon{width:44px;height:44px;flex:none;margin-right:17px;filter:drop-shadow(0 0 8px rgba(25,255,100,.5));animation:spin 4s linear infinite}
+.whatsapp{filter:drop-shadow(0 0 8px rgba(25,255,100,.5))}
+.text{display:flex;flex-direction:column;gap:4px}
+.text strong{font-size:16px;letter-spacing:1px}
+.text small{font-size:10px;color:#7bff9e;letter-spacing:1px}
+.arrow{margin-left:auto;color:#24ff68;font-size:22px}
+.info{position:fixed;left:22px;bottom:18px;z-index:3;color:#63ff8e;font:10px/1.65 monospace;opacity:.65}
+.info b{color:#b4ffc8}
+.loader{position:fixed;inset:0;background:#000;z-index:20;display:flex;align-items:center;justify-content:center;transition:opacity .55s,visibility .55s}
+.loader.hide{opacity:0;visibility:hidden}
+.loader-inner{text-align:center}
+.loader-logo{width:64px;filter:drop-shadow(0 0 15px #19ff66);animation:spin 1.8s linear infinite}
+.loader-inner p{margin-top:18px;font:700 10px monospace;letter-spacing:4px;color:#38ff75}
+.loader-bar{width:150px;height:2px;background:#0a3218;margin:15px auto 0;overflow:hidden}
+.loader-bar i{display:block;width:40%;height:100%;background:#1cff67;animation:load 1s infinite}
+@keyframes load{from{transform:translateX(-100%)}to{transform:translateX(350%)}}
+@media(max-width:600px){
+main{padding-top:34px}.brand{margin-top:32px;margin-bottom:38px}.brand h1{letter-spacing:3px}
+.corner-logo{right:17px;top:17px;width:38px;height:38px}.download-btn{min-height:68px}
+.info{position:relative;left:auto;bottom:auto;margin-top:40px;align-self:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+.column,.icon,.corner-logo,.loader-logo{animation:none}.download-btn{animation:none;opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="code-bg"></div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <svg class="loader-logo" viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.49 17.3a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.05 8.5-.6 11.65 1.32.35.22.46.68.26 1.05zm1.39-3.1a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.39a.94.94 0 1 1-.55-1.8c4.36-1.32 9.79-.68 13.5 1.6.43.26.57.83.31 1.28zm.12-3.23C15.13 8.6 8.98 8.36 5.5 9.41a1.13 1.13 0 1 1-.65-2.17c4-1.21 10.66-.97 14.71 1.44a1.13 1.13 0 0 1-.56 2.1z"/></svg>
+    <p>SPOTIFY DOWNLOADS</p><div class="loader-bar"><i></i></div>
+  </div>
+</div>
+
+<main>
+  <div class="corner-logo" aria-label="Spotify">
+    <svg viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.49 17.3a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.05 8.5-.6 11.65 1.32.35.22.46.68.26 1.05zm1.39-3.1a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.39a.94.94 0 1 1-.55-1.8c4.36-1.32 9.79-.68 13.5 1.6.43.26.57.83.31 1.28zm.12-3.23C15.13 8.6 8.98 8.36 5.5 9.41a1.13 1.13 0 1 1-.65-2.17c4-1.21 10.66-.97 14.71 1.44a1.13 1.13 0 0 1-.56 2.1z"/></svg>
+  </div>
+
+  <section class="brand">
+    <h1>SPOTIFY<span>DOWNLOADS</span></h1>
+    <p>// PREMIUM DOWNLOAD PORTAL //</p>
+  </section>
+
+  <section class="buttons">
+    <a class="download-btn" href="https://www.mediafire.com/file/px06t6nlzce14pi/Spotify_premium_V5_global.apk/file" target="_blank" rel="noopener">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.49 17.3a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.05 8.5-.6 11.65 1.32.35.22.46.68.26 1.05zm1.39-3.1a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.39a.94.94 0 1 1-.55-1.8c4.36-1.32 9.79-.68 13.5 1.6.43.26.57.83.31 1.28zm.12-3.23C15.13 8.6 8.98 8.36 5.5 9.41a1.13 1.13 0 1 1-.65-2.17c4-1.21 10.66-.97 14.71 1.44a1.13 1.13 0 0 1-.56 2.1z"/></svg></span>
+      <span class="text"><strong>🎵 PREMIUM</strong><small>SPOTIFY PREMIUM V3</small></span><span class="arrow">›</span>
+    </a>
+<a class="download-btn" href="https://whatsapp.com/channel/0029VbCNlywHrDZaPV7w151Vo" target="_blank" rel="noopener">
+      <span class="icon whatsapp"><svg viewBox="0 0 24 24" fill="#19ff66"><path d="M12 0a12 12 0 0 0-10.4 18L0 24l6.2-1.6A12 12 0 1 0 12 0zm6.8 17.1c-.29.82-1.7 1.5-2.35 1.56-.6.06-1.36.09-2.2-.14-.51-.14-1.17-.38-2.01-.74-3.54-1.53-5.84-5.12-6.02-5.36-.18-.24-1.44-1.91-1.44-3.65s.91-2.59 1.23-2.95c.32-.36.7-.45.93-.45h.67c.21 0 .5-.08.79.6.29.7 1 2.43 1.09 2.61.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.36.38-.15.74.21.36.94 1.55 2.02 2.51 1.39 1.24 2.56 1.63 2.92 1.81.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.81-.18.33.12 2.08.98 2.44 1.16.36.18.6.27.69.42.09.15.09.84-.2 1.66z"/></svg></span>
+      <span class="text"><strong>🟢 GRUPO DE ATUALIZAÇÃO</strong><small>CANAL OFICIAL</small></span><span class="arrow">›</span>
+    </a>
+  </section>
+
+  <div class="info">
+    <div><b>Criadores:</b> Equipe Spotify Proxy</div>
+    <div><b>Nome:</b> SPOTIFY DOWNLOADS</div>
+    <div><b>Criado:</b> 14/08/2026</div>
+  </div>
+</main>
+
+<script>
+const codes=["JV","C++","PT","ETC","HTML","CSS","JS","JAVA","PYTHON","JSON","API","<>","{ }","[ ]","//","#","01","10"];
+const bg=document.getElementById("code-bg");
+for(let i=0;i<15;i++){
+  const col=document.createElement("div");
+  col.className="column";
+  col.style.left=(i*7+Math.random()*4-2)+"%";
+  col.style.animationDuration=(15+Math.random()*18)+"s";
+  col.style.animationDelay=(-Math.random()*25)+"s";
+  for(let j=0;j<26;j++){
+    const s=document.createElement("span");
+    s.className="code"+(Math.random()<.15?" black":"");
+    s.textContent=codes[Math.floor(Math.random()*codes.length)];
+    s.style.opacity=(.05+Math.random()*.13).toFixed(2);
+    col.appendChild(s);
+  }
+  bg.appendChild(col);
+}
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").classList.add("hide"),650));
+</script>
+</body>
+</html>
