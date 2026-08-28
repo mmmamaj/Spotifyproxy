@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>TUTORIAIS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;font-family:Inter,Arial,sans-serif;background:#000;color:#fff;overflow-x:hidden}
+body{min-height:100svh;position:relative}
+#code-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#000}
+.column{position:absolute;top:-120%;display:flex;flex-direction:column;gap:28px;white-space:nowrap;animation:fall linear infinite}
+.code{font:700 12px/1.2 monospace;color:#19ff66;opacity:.12;text-shadow:0 0 8px #19ff66}
+@keyframes fall{to{transform:translateY(230%)}}
+body:after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 40%,rgba(0,255,80,.06),transparent 45%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5))}
+main{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:38px 20px 35px}
+.brand{text-align:center;margin-top:26px;margin-bottom:42px}
+.brand h1{font-size:clamp(28px,8vw,48px);font-weight:900;letter-spacing:5px;line-height:.95;text-shadow:0 0 18px rgba(20,255,90,.3)}
+.brand h1 span{display:block;color:#18ff63}
+.brand p{margin-top:14px;color:#7cff9e;font:600 10px monospace;letter-spacing:4px;opacity:.75}
+.buttons{width:min(430px,100%);display:flex;flex-direction:column;gap:15px}
+.tutorial-btn{position:relative;width:100%;min-height:80px;border:1px solid rgba(24,255,99,.65);border-radius:16px;background:linear-gradient(100deg,rgba(7,25,13,.94),rgba(0,0,0,.92));box-shadow:0 0 18px rgba(19,255,95,.09),inset 0 0 20px rgba(19,255,95,.025);color:#fff;text-decoration:none;display:flex;align-items:center;padding:12px 20px;transition:.2s}
+.tutorial-btn:hover{border-color:#20ff68;box-shadow:0 0 28px rgba(20,255,90,.2);transform:translateY(-3px)}
+.icon{width:44px;height:44px;flex:none;margin-right:17px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.text{display:flex;flex-direction:column;gap:4px}
+.text strong{font-size:16px;letter-spacing:1px}
+.text small{font-size:10px;color:#7bff9e;letter-spacing:1px}
+.arrow{margin-left:auto;color:#24ff68;font-size:22px}
+.back{margin-top:18px;color:#7bff9e;text-decoration:none;font:600 11px monospace;letter-spacing:1px}
+.back:hover{color:#fff}
+@media(prefers-reduced-motion:reduce){.column{animation:none}}
+</style>
+</head>
+<body>
+<div id="code-bg"></div>
+<main>
+<section class="brand">
+<h1>SPOTIFY<span>TUTORIAIS</span></h1>
+<p>// GUIAS DE CONFIGURAÇÃO //</p>
+</section>
+
+<section class="buttons">
+<a class="tutorial-btn" href="https://api-cluster.nevermissapps.com/public-blob/img_1783294013317_Screenrecorder-2026-07-05-20-17-21-97.mp4" target="_blank" rel="noopener">
+<span class="icon">⚙️</span>
+<span class="text"><strong>ATIVAR O SHIZUKU</strong><small>TUTORIAL EM VÍDEO</small></span><span class="arrow">›</span>
+</a>
+
+<a class="tutorial-btn" href="https://www.instagram.com/reel/DclgxvBO4f6/?igsi=YzZiZXo5azFkbHZp" target="_blank" rel="noopener">
+<span class="icon">📲</span>
+<span class="text"><strong>COLOCAR O ARQUIVO</strong><small>TUTORIAL NO INSTAGRAM</small></span><span class="arrow">›</span>
+</a>
+</section>
+
+<a class="back" href="index_spotify_downloads_atualizado.html">← VOLTAR</a>
+</main>
+
+<script>
+const codes=["JV","C++","PT","ETC","HTML","CSS","JS","JAVA","PYTHON","JSON","API","<>","{ }","[ ]","//","#","01","10"];
+const bg=document.getElementById("code-bg");
+for(let i=0;i<15;i++){
+ const col=document.createElement("div");
+ col.className="column";
+ col.style.left=(i*7+Math.random()*4-2)+"%";
+ col.style.animationDuration=(15+Math.random()*18)+"s";
+ col.style.animationDelay=(-Math.random()*25)+"s";
+ for(let j=0;j<26;j++){
+  const s=document.createElement("span");
+  s.className="code";
+  s.textContent=codes[Math.floor(Math.random()*codes.length)];
+  s.style.opacity=(.05+Math.random()*.13).toFixed(2);
+  col.appendChild(s);
+ }
+ bg.appendChild(col);
+}
+</script>
+</body>
+</html>
